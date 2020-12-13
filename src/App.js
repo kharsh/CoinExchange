@@ -1,35 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
-import Coin from './component/Coin/Coin'
-import AccountBalance from './component/AccountBalance/AccountBalance';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="ReactApp"/>
-        <h1 className="App-title">
-          Coin Exchange
-        </h1>
-        </header>
-          <AccountBalance amount={10000} />
-        <table className="coin-table">
-          <thead>
-            <tr>
-                <th>Name</th>
-                <th>Ticker</th>
-                <th>Price</th>
-            </tr>
-          </thead>
-        <tbody>
-          <Coin name="Bitcoin" ticker="BTC" price={9999.9} />
-          <Coin name="Etherium" ticker="Eth" price={555} />
-          <Coin name="Theater" ticker="USD" price={1} />
-          <Coin name="Riple" ticker="XRP" price={0.2} />
-        </tbody>
-      </table>
-    </div>
-  );
+import './App.css';
+import AccountBalance from './component/AccountBalance/AccountBalance';
+import React from 'react'
+import CoinList from './component/CoinList/CoinList';
+import Header from './component/CoinExchangeHeader/Header';
+import 'styled-components'
+import styled from 'styled-components';
+
+const AppHeader = styled.div`
+  text-align: center;
+  background-color: rgb(184, 129, 11);
+  color: #cccccc;
+`;
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      coinExchangeHeader: "Coin Exchange",
+      balance : 10000,
+      coinData: [
+        {
+          name : "Bitcoin",
+          ticker : "BTC",
+          price : 9999
+        },
+        {
+          name : "Ethereum",
+          ticker : "ETH",
+          price : 500
+        },
+        {
+          name : "Tether",
+          ticker : "USD",
+          price : 1
+        },
+        {
+          name : "Repel",
+          ticker : "XRP",
+          price : 10
+        },
+        {
+          name : "BitCoin Cash",
+          ticker : "BCH",
+          price : 99
+        }
+      ]
+    }
+  }
+  
+  render() {
+    return (
+      <AppHeader>
+            <Header header={this.state.coinExchangeHeader}/>
+            <AccountBalance amount={this.state.balance}/>
+            <CoinList coinData={this.state.coinData} />
+      </AppHeader>
+    );
+  }
 }
+
 
 export default App;

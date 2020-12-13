@@ -48,3 +48,4 @@ Coin.propTypes = {
     ticker: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired
 }
+
