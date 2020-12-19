@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import 'styled-components'
 import styled from 'styled-components';
@@ -15,28 +15,25 @@ const SecButton = styled.button `
     min-height: 2.5vh
 `;
 
-export default class AccountBalance extends Component {
-
-    render() {
-        const balanceText = this.props.showBalance ? 'HideBalance' : 'ShowBalance';
-        let content = null;
-        if(this.props.showBalance) {
-            content = <>Balance ${this.props.amount}</>
-        }
-        return (
-            <React.Fragment>
-                <div>
-                <Section hidden={!this.props.showBalance}>
-                    {content}    
-                         
-                </Section>
-                <SecButton onClick = {this.props.handleBalanceDisplay}>{balanceText}</SecButton> 
-                
-                
-                </div>
-            </React.Fragment>
-        );
+export default function AccountBalance(props) {
+    const balanceText = props.showBalance ? 'HideBalance' : 'ShowBalance';
+    let content = null;
+    if(props.showBalance) {
+        content = <>Balance ${props.amount}</>
     }
+    return (
+        <React.Fragment>
+            <div>
+            <Section hidden={!props.showBalance}>
+                {content}    
+                        
+            </Section>
+            <SecButton onClick = {props.handleBalanceDisplay}>{balanceText}</SecButton> 
+            
+            
+            </div>
+        </React.Fragment>
+    );
 }
 
 AccountBalance.propTypes = {
